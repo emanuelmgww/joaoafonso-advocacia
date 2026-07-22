@@ -80,7 +80,7 @@
   position: absolute;
   inset: 0;
   z-index: 0;
-  background-image: url('img/bg-light.jpg');
+  background-image: url('img/bg-light-1600.webp');
   background-size: cover;
   background-position: center;
   opacity: 0.16;
@@ -128,6 +128,7 @@ ul, ol { list-style: none; }
 a { color: inherit; text-decoration: none; }
 button { font: inherit; color: inherit; background: none; border: none; cursor: pointer; }
 input, select, textarea { font: inherit; color: inherit; }
+picture { display: contents; }
 
 :focus-visible {
   outline: 2px solid var(--accent);
@@ -533,6 +534,7 @@ html {
 
 .hero {
   position: relative;
+  min-height: 100vh;
   min-height: 100svh;
   display: flex;
   align-items: center;
@@ -551,7 +553,11 @@ html {
 .hero__texture {
   position: absolute;
   inset: 0;
-  background-image: url('img/bg-dark.jpg');
+  background-image: url('img/bg-dark-1600.webp');
+  background-image: image-set(
+    url('img/bg-dark-1600.avif') type('image/avif'),
+    url('img/bg-dark-1600.webp') type('image/webp')
+  );
   background-size: cover;
   background-position: center;
   opacity: 0.24;
@@ -586,6 +592,22 @@ html {
   justify-content: center;
   gap: 1rem;
   margin-top: clamp(2rem, 1.5rem + 1.5vw, 2.75rem);
+}
+
+/* Entrada da Hero por animação CSS (roda no primeiro paint, sem
+   depender do JS). Diferente do .reveal, não deixa o LCP preso em
+   opacity:0 esperando o IntersectionObserver do script deferido. */
+.hero__logo,
+.hero__text,
+.hero__actions {
+  animation: heroIn 0.9s var(--ease) both;
+}
+.hero__text { animation-delay: 0.1s; }
+.hero__actions { animation-delay: 0.2s; }
+
+@keyframes heroIn {
+  from { opacity: 0; transform: translateY(28px); }
+  to { opacity: 1; transform: none; }
 }
 
 .hero__scroll {
@@ -694,7 +716,11 @@ html {
   position: absolute;
   inset: 0;
   z-index: 0;
-  background-image: url('img/bg-dark.jpg');
+  background-image: url('img/bg-dark-1600.webp');
+  background-image: image-set(
+    url('img/bg-dark-1600.avif') type('image/avif'),
+    url('img/bg-dark-1600.webp') type('image/webp')
+  );
   background-size: cover;
   background-position: center;
   opacity: 0.24;
@@ -815,7 +841,7 @@ html {
 
   --heading: var(--branco);
   --text: #EDEBE5;
-  --text-mute: rgba(237, 235, 229, 0.5);
+  --text-mute: rgba(237, 235, 229, 0.72);
   --border: rgba(188, 170, 134, 0.2);
   --border-strong: rgba(188, 170, 134, 0.34);
 
@@ -961,7 +987,7 @@ html {
 
   background:
     linear-gradient(rgba(255, 255, 255, 0.84), rgba(255, 255, 255, 0.84)),
-    url('img/bg-light.jpg') center / cover;
+    url('img/bg-light-1600.webp') center / cover;
   box-shadow: 0 40px 90px rgba(0, 0, 0, 0.35);
 }
 
@@ -1019,8 +1045,8 @@ html {
 .footer {
 
   --border: rgba(255, 255, 255, 0.1);
-  --text-soft: rgba(237, 235, 229, 0.62);
-  --text-mute: rgba(237, 235, 229, 0.4);
+  --text-soft: rgba(237, 235, 229, 0.7);
+  --text-mute: rgba(237, 235, 229, 0.6);
 
   background: var(--grafite);
   padding-top: clamp(3.5rem, 2.5rem + 3vw, 5rem);
@@ -1132,6 +1158,12 @@ html {
   box-shadow: 0 14px 38px rgba(168, 140, 101, 0.36);
 }
 
+/* No desktop a nav fixa já leva ao WhatsApp pelo "Contato";
+   o flutuante fica só no mobile (nav vira hambúrguer ≤1024). */
+@media (min-width: 1025px) {
+  .whatsapp { display: none; }
+}
+
 .reveal {
   opacity: 0;
   transform: translateY(28px);
@@ -1241,7 +1273,14 @@ html {
   }
   .nav-overlay.is-open { opacity: 1; visibility: visible; }
 
-  .hero { min-height: auto; }
+  /* Hero ocupa a altura útil real da tela (dvh acompanha a barra
+     de endereço). min-height (não height) evita corte: se o
+     conteúdo for mais alto, o bloco cresce em vez de esconder. */
+  .hero {
+    min-height: 100vh;
+    min-height: 100dvh;
+    padding-block: clamp(5.5rem, 22vw, 8rem) clamp(2rem, 8vw, 3.5rem);
+  }
   .hero__logo { width: min(78%, 320px); }
   .hero__scroll { display: none; }
 
