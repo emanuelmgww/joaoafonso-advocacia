@@ -684,7 +684,7 @@ html {
   position: relative;
   padding: clamp(2rem, 1.6rem + 1.2vw, 2.75rem);
   background: var(--surface);
-  border: 1px solid var(--border);
+  border: 1px solid var(--border-strong);
   border-radius: var(--radius-lg);
   overflow: hidden;
 }
@@ -727,7 +727,9 @@ html {
   background: linear-gradient(
     90deg,
     transparent 0%,
-    var(--accent) 50%,
+    rgba(138, 111, 74, 0.45) 38%,
+    rgba(118, 93, 60, 0.68) 50%,
+    rgba(138, 111, 74, 0.45) 62%,
     transparent 100%
   );
 }
@@ -778,17 +780,26 @@ html {
 
 .sobre__media { display: grid; justify-items: center; }
 
+/* No desktop, compensa a altura da assinatura para o retrato ficar
+   verticalmente centralizado com o texto (a coluna toda ja e centrada). */
+@media (min-width: 1025px) {
+  .sobre__media { padding-top: 5rem; }
+}
+
 .sobre__portrait {
   position: relative;
   width: 100%;
   max-width: 420px;
-  aspect-ratio: 3 / 4.2;
+  aspect-ratio: 3 / 4.05;
   display: flex;
   align-items: flex-end;
   justify-content: center;
   overflow: hidden;
-  border: 1px solid var(--border);
+  border: 1px solid rgba(188, 170, 134, 0.5);
   border-radius: 28px;
+  box-shadow:
+    0 0 0 1px rgba(168, 140, 101, 0.12),
+    0 26px 60px rgba(0, 0, 0, 0.4);
   background:
     radial-gradient(78% 55% at 50% 24%, rgba(19, 59, 51, 0.55), transparent 72%),
     linear-gradient(180deg, var(--verde-800) 0%, #0C241E 52%, var(--verde-900) 100%);
@@ -797,7 +808,7 @@ html {
 .sobre__photo {
   position: relative;
   z-index: 1;
-  width: 112%;
+  width: 135%;
   max-width: none;
   height: auto;
   align-self: flex-end;
@@ -1101,6 +1112,36 @@ html {
   line-height: 1.85;
   color: var(--text-soft);
   max-width: 34ch;
+}
+
+.footer__social {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-top: 1.5rem;
+}
+
+.footer__social-link {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border: 1px solid var(--border-strong);
+  border-radius: 50%;
+  color: var(--areia);
+  transition: background-color 0.35s var(--ease),
+              border-color 0.35s var(--ease),
+              color 0.35s var(--ease),
+              transform 0.35s var(--ease);
+}
+
+.footer__social-link svg { width: 20px; height: 20px; }
+
+.footer__social-link:hover {
+  background: var(--dourado);
+  border-color: var(--dourado);
+  color: var(--verde-900);
+  transform: translateY(-2px);
 }
 
 .footer__title {

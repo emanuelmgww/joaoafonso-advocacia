@@ -69,7 +69,7 @@
       'footer.a4': 'Guarda',
       'footer.a5': 'Paternidade',
       'footer.rights': '© {year} João Afonso | Advocacia e Consultoria Jurídica. Todos os direitos reservados.',
-      'footer.oab': 'OAB/SP 000.000. Conteúdo meramente informativo, em conformidade com o Código de Ética da OAB.'
+      'footer.oab': 'OAB/MG 214.173 • Conteúdo exclusivamente informativo, em conformidade com o Código de Ética e Disciplina da OAB.'
     },
 
     en: {
@@ -133,7 +133,7 @@
       'footer.a4': 'Custody',
       'footer.a5': 'Paternity',
       'footer.rights': '© {year} João Afonso | Law Firm and Legal Consulting. All rights reserved.',
-      'footer.oab': 'Brazilian Bar Association SP 000.000. Informational content only, in accordance with the Brazilian Bar Association Code of Ethics.'
+      'footer.oab': 'Brazilian Bar Association (OAB/MG) 214.173. Informational content only, in accordance with the OAB Code of Ethics and Discipline.'
     },
 
     es: {
@@ -197,7 +197,7 @@
       'footer.a4': 'Custodia',
       'footer.a5': 'Paternidad',
       'footer.rights': '© {year} João Afonso | Abogacía y Consultoría Jurídica. Todos los derechos reservados.',
-      'footer.oab': 'Colegio de Abogados de Brasil SP 000.000. Contenido meramente informativo, conforme al Código de Ética del Colegio de Abogados de Brasil.'
+      'footer.oab': 'Colegio de Abogados de Brasil (OAB/MG) 214.173. Contenido meramente informativo, conforme al Código de Ética y Disciplina de la OAB.'
     }
   };
 
